@@ -26,7 +26,10 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function template(){
+    public function template()
+    {
         return view('custompage');
     }
+
+
 }
