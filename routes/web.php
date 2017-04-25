@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::get('/Welcome','Controller@welcome');
 Auth::routes();
 
+/*user home*/
 Route::get('/home', 'HomeController@index');
+
+/*testing the html template*/
+Route::get('/template','HomeController@template');
