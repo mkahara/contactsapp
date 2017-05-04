@@ -2,7 +2,7 @@
 @section ('body')
 <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-2">
             <br /><br /><br />
                @section ('login_panel_title','Please Sign In')
                @section ('login_panel_body')

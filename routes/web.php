@@ -24,10 +24,10 @@ Route::get('/home', 'HomeController@index');
 /*testing the html template*/
 Route::get('/template','HomeController@template');
 
-Route::get('/', function()
-{
-    return View::make('home');
-});
+//Route::get('/', function()
+//{
+//    return View::make('home');
+//});
 
 Route::get('/charts', function()
 {
@@ -80,12 +80,12 @@ Route::get('/blank', function()
     return View('blank');
 });
 
-Route::get('/login', function()
-{
-    return View('login');
-});
 
 Route::get('/documentation', function()
 {
     return View('documentation');
 });
+
+/*facebook login routes*/
+Route::get('auth/facebook',['as'=>'auth/facebook','uses'=>'Auth\LoginController@redirectToProvider']);
+Route::get('auth/facebook/callback',['as'=>'auth/facebook/callback','uses'=>'Auth\LoginController@handleProviderCallback']);

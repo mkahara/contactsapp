@@ -8938,4 +8938,8 @@ canvas.round {
         border-left-width: 0;
     }
 }
+.top-nav-avi{
+  width:36px;
+  border-radius:50%;
+}
 /*# sourceMappingURL=styles.css.map */

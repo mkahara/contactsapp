@@ -1,17 +1,8 @@
 @extends('layouts.dashboard')
-@section('page_heading','My Contact List')
+@section('page_heading','Tables')
 
 @section('section')
 <div class="col-sm-12">
-<div class="row">
-    <div class="col-sm-12">
-        @section ('dtable_panel_title','Datatables Advanced Table')
-        @section ('dtable_panel_body')
-        @include ('widgets.table',array('class'=>'table-striped','id'=>'dataTables-example'))
-        @endsection
-        @include('widgets.panel', array('header'=>true, 'as'=>'table'))
-    </div>
-</div>
 <div class="row">
 	<div class="col-sm-6">
 		@section ('table_panel_title','Regular Table')

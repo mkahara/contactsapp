@@ -1,12 +1,11 @@
-@extends('css.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+@extends ('layouts.plane')
+@section ('body')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br /><br /><br />
+                @section ('login_panel_title','Please Sign In')
+                @section ('login_panel_body')
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -54,15 +53,20 @@
                                     Login
                                 </button>
 
+                                <a class="btn btn-info" href="{{ URL::route('auth/facebook') }}">
+                                    Login with Facebook
+                                </a>
+
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
                         </div>
                     </form>
-                </div>
+
+                @endsection
+                @include('widgets.panel', array('as'=>'login', 'header'=>true))
             </div>
         </div>
     </div>
-</div>
-@endsection
+@stop
