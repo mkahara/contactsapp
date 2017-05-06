@@ -21,8 +21,11 @@ Auth::routes();
 /*user home*/
 Route::get('/home', 'HomeController@index');
 
-/*testing the html template*/
-Route::get('/template','HomeController@template');
+/*admin home*/
+Route::get('/dashboard', 'HomeController@dashboard');
+
+/*logout user*/
+Route::get('/logout','HomeController@doLogout');
 
 //Route::get('/', function()
 //{

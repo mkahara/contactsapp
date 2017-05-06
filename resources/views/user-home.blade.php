@@ -7,9 +7,9 @@
     <div class="col-sm-12">
         @section ('dtable_panel_title','Datatables Advanced Table')
         @section ('dtable_panel_body')
-        @include ('widgets.table',array('class'=>'table-striped','id'=>'dataTables-example'))
+        @include ('widgets.table',array('class'=>'','id'=>'dataTables-example'))
         @endsection
-        @include('widgets.panel', array('header'=>true, 'as'=>'table'))
+        @include('widgets.panel', array('header'=>true, 'as'=>'user-home'))
     </div>
 </div>
 <div class="row">
@@ -18,7 +18,7 @@
 		@section ('table_panel_body')
 		@include('widgets.table', array('class'=>''))
 		@endsection
-		@include('widgets.panel', array('header'=>true, 'as'=>'table'))
+		@include('widgets.panel', array('header'=>true, 'as'=>'user-home'))
 	</div>
 	<div class="col-sm-6">
 		@section ('btable_panel_title','Bordered Table')

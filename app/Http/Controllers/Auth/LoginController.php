@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Auth;
 use Socialite;
 use App\User;
@@ -28,13 +29,17 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
+    protected function authenticated(Request $request, $user)
+    {
+        if($user->user_type == '0') {
+            return redirect('/dashboard');
+        }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+        return redirect('/home');
+    }
+
+
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
@@ -55,7 +60,7 @@ class LoginController extends Controller
 
         Auth::login($authUser,true);
 
-        return redirect()->route('home');
+        return redirect('/home');
     }
 
     private function findOrCreateUser($facebookUser){

@@ -48,7 +48,7 @@
 
 				<p>@include('widgets.icon', array('class'=>'trash-o')) fa-trash-o
 
-				<p>@include('widgets.icon', array('class'=>'home')) fa-home
+				<p>@include('widgets.icon', array('class'=>'admin-home.blade.php')) fa-home
 
 				<p>@include('widgets.icon', array('class'=>'file-o')) fa-file-o
 
@@ -403,7 +403,7 @@
 
 				<p>@include('widgets.icon', array('class'=>'underline')) fa-underline
 
-				<p>@include('widgets.icon', array('class'=>'table')) fa-table
+				<p>@include('widgets.icon', array('class'=>'user-home')) fa-table
 
 				<p>@include('widgets.icon', array('class'=>'magic')) fa-magic
 
