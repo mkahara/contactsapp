@@ -36,7 +36,7 @@ class LoginController extends Controller
             return redirect('/dashboard');
         }
 
-        return redirect('/home');
+        return redirect('/contact');
     }
 
 
@@ -60,7 +60,7 @@ class LoginController extends Controller
 
         Auth::login($authUser,true);
 
-        return redirect('/home');
+        return redirect('/contact');
     }
 
     private function findOrCreateUser($facebookUser){

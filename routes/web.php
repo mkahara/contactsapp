@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\MyAuth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +18,13 @@ Route::get('/', function () {
 Route::get('/Welcome','Controller@welcome');
 Auth::routes();
 
+/*Include to MyAuth middleware*/
+//Route::group(['middleware' => MyAuth::class], function () {
+//    Route::resource('contact', 'ContactController');
+//});
+
 /*user home*/
-Route::get('/home', 'HomeController@index');
+Route::resource('contact', 'ContactController');
 
 /*admin home*/
 Route::get('/dashboard', 'HomeController@dashboard');
@@ -27,67 +32,9 @@ Route::get('/dashboard', 'HomeController@dashboard');
 /*logout user*/
 Route::get('/logout','HomeController@doLogout');
 
-//Route::get('/', function()
-//{
-//    return View::make('home');
-//});
-
-Route::get('/charts', function()
-{
-    return view('mcharts');
-});
-
-Route::get('/tables', function()
-{
-    return view('table');
-});
-
-Route::get('/forms', function()
-{
-    return view('form');
-});
-
-Route::get('/grid', function()
-{
-    return view('grid');
-});
-
-Route::get('/buttons', function()
-{
-    return view('buttons');
-});
-
-
-Route::get('/icons', function()
-{
-    return view('icons');
-});
-
-Route::get('/panels', function()
-{
-    return View('panel');
-});
-
-Route::get('/typography', function()
-{
-    return View('typography');
-});
-
-Route::get('/notifications', function()
-{
-    return View('notifications');
-});
-
-Route::get('/blank', function()
-{
-    return View('blank');
-});
-
-
-Route::get('/documentation', function()
-{
-    return View('documentation');
-});
+/*Contact resource*/
+Route::get('create', 'ContactController@index');
+Route::post('store', 'ContactController@store');
 
 /*facebook login routes*/
 Route::get('auth/facebook',['as'=>'auth/facebook','uses'=>'Auth\LoginController@redirectToProvider']);
