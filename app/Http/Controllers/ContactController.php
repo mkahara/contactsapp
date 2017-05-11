@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Contact;
-//use App\Http\Middleware\MyAuth;
-//use App\Http\ContactRequest
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Auth;
@@ -21,7 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::where('user_id',Auth::user()->id)->get();
+        $contacts = Contact::where('user_id',Auth::user()->id)->paginate(2);
         return view('contacts.index',compact('contacts'));
     }
 
@@ -70,6 +70,15 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
+        //$dob = Contact::select('dob')->where('id',$contact->id)->get();
+        //$dob = Contact::getAge();
+        //$dob = new Carbon($dob);
+//        $now = new Carbon();
+//        $age = $dob->diffInYears($now);
+        //$howOldAmI = Carbon::createFromDate($dob)->age;
+        //var_dump($dob); die();
+        //$age = new Contact();
+        //$age = $age()->getAge();
         return view('contacts.show',compact('contact'));
     }
 

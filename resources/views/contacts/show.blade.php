@@ -13,7 +13,7 @@
                     <div class="panel-body">
 
                         {{ $contact->phone }}
-
+                        {{ $age }}
                     </div>
                 </div>
 
