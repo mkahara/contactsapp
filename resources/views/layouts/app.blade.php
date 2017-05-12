@@ -47,7 +47,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/contact') }}">Home </a></li>
-                    <li><a href="{{ url('#') }}">Trash </a></li>
+                    <li><a href="{{ url('/trash') }}">Trash </a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

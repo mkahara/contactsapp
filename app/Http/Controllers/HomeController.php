@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\QueryException;
+use App\Contact;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -27,18 +28,14 @@ class HomeController extends Controller
         return view('user-home');
     }
 
-    public function template()
+    public function trash()
     {
-        return view('custompage');
+        $contacts = Contact::onlyTrashed()->where('user_id',Auth::user()->id)->paginate(2);
+        return view('contacts/trash',compact('contacts'));
     }
-
-    public function dashboard(){
-        return view('admin-home');
-    }
-
-    public function doLogout(Request $request)
+    public function restore($id)
     {
-        Auth::logout(); // log the user out of our application
-        return redirect('login'); // redirect the user to the login screen
+        $contacts = Contact::withTrashed()->find($id)->restore();
+        return redirect ('contact')->with('message','The contact has been Restored!');
     }
 }

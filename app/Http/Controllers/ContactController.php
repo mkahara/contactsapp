@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Contact;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -51,13 +50,14 @@ class ContactController extends Controller
 
         try{
             Contact::create($request->all());
-            return redirect()->route('contact.index')->with('message','The contact has been added successfully!');
+            $request->session()->flash('message','The contact has been added successfully!');
+            return redirect()->route('contact.index');
         }
         catch(QueryException $e){
             $error_code = $e->errorInfo[1];
             if($error_code == 1062){
-                //self::destroy($request);
-                return redirect()->route('contact.index')->with('error','The contact cannot be added, duplicate record found!');
+                $request->session()->flash('error','The contact cannot be added, duplicate record found!');
+                return redirect()->route('contact.index');
             }
         }
     }
@@ -79,7 +79,13 @@ class ContactController extends Controller
         //var_dump($dob); die();
         //$age = new Contact();
         //$age = $age()->getAge();
-        return view('contacts.show',compact('contact'));
+        try{
+            return view('contacts.show',compact('contact'));
+        }
+        catch(QueryException $e){
+            return redirect()->route('contact.index')->with('error','This contact is unavailable!');
+        }
+
     }
 
     /**
@@ -118,4 +124,11 @@ class ContactController extends Controller
         $contact->delete();
         return redirect()->route('contact.index')->with('message','The contact has been deleted successfully!');
     }
+
+    public function restore($id)
+    {
+        $contacts = Contact::withTrashed()->find($id)->restore();
+        return view('contacts.index',compact('contacts'));
+    }
+
 }

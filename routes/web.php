@@ -29,6 +29,12 @@ Route::resource('contact', 'ContactController');
 /*admin home*/
 Route::get('/dashboard', 'HomeController@dashboard');
 
+/*trash*/
+Route::get('/trash', 'HomeController@trash');
+
+/*restore*/
+Route::get('/restore/{id}', 'HomeController@restore');
+
 /*logout user*/
 Route::get('/logout','HomeController@doLogout');
 
