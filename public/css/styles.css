@@ -1,0 +1,20 @@
+/*Custom styles*/
+.contact-glyphicons{
+    font-size: x-large;
+    color: #286090;
+    margin: 10px;
+}
+.contact-first-row{
+    margin-bottom: 50px;
+}
+.contact-glyphicon-title{
+    font-weight: 600;
+    color: #286090;
+}
+.contact-center-items{
+    text-align: center;
+}
+.export-to-vcard-glyphicon{
+    font-size: 50px;
+    color: #f0ad4e;
+}

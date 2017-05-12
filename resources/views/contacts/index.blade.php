@@ -43,7 +43,7 @@
 
                     </div>
                 </div>
-                {{$contacts->links()}} {{ link_to_route('contact.create','Add New Contact',null,['class'=>'btn btn-success']) }}
+                {{$contacts->links()}} {{ link_to_route('contact.create','Add New Contact',null,['class'=>'btn btn-success pull-left']) }}
 
 
             </div>
