@@ -38,4 +38,10 @@ class HomeController extends Controller
         $contacts = Contact::withTrashed()->find($id)->restore();
         return redirect ('contact')->with('message','The contact has been Restored!');
     }
+
+    public function doLogout(Request $request)
+    {
+        Auth::logout(); // log the user out of our application
+        return redirect('login'); // redirect the user to the login screen
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Contact;
-use Carbon\Carbon;
+//use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Auth;
@@ -70,17 +70,14 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //$dob = Contact::select('dob')->where('id',$contact->id)->get();
-        //$dob = Contact::getAge();
-        //$dob = new Carbon($dob);
-//        $now = new Carbon();
-//        $age = $dob->diffInYears($now);
-        //$howOldAmI = Carbon::createFromDate($dob)->age;
-        //var_dump($dob); die();
-        //$age = new Contact();
-        //$age = $age()->getAge();
+        $dob = Contact::select('dob')->where('id',$contact->id)->get();
+        $then_ts = strtotime($dob);
+        $then_year = date('Y', $then_ts);
+        $age = date('Y') - $then_year;
+        if(strtotime('+' . $age . ' years', $then_ts) > time()) $age--;
+
         try{
-            return view('contacts.show',compact('contact'));
+            return view('contacts.show',compact('contact'))->with('age',$age);
         }
         catch(QueryException $e){
             return redirect()->route('contact.index')->with('error','This contact is unavailable!');

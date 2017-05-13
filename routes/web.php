@@ -15,19 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Welcome','Controller@welcome');
 Auth::routes();
-
-/*Include to MyAuth middleware*/
-//Route::group(['middleware' => MyAuth::class], function () {
-//    Route::resource('contact', 'ContactController');
-//});
 
 /*user home*/
 Route::resource('contact', 'ContactController');
-
-/*admin home*/
-Route::get('/dashboard', 'HomeController@dashboard');
 
 /*trash*/
 Route::get('/trash', 'HomeController@trash');

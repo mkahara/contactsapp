@@ -14,6 +14,21 @@ class Contact extends Model
 
     public static function getAge(){
         $now = new Carbon();
-        return $this->dob->diffInYears($now);
+        //console.log($now);
+        $then_ts = strtotime("1990-12-12");
+        $then_year = date('Y', $then_ts);
+        $age = date('Y') - $then_year;
+        if(strtotime('+' . $age . ' years', $then_ts) > time()) $age--;
+        return $age;
+
+        //return $this->calculateAge($now);
+    }
+
+    public function calculateAge($then) {
+        $then_ts = strtotime($then);
+        $then_year = date('Y', $then_ts);
+        $age = date('Y') - $then_year;
+        if(strtotime('+' . $age . ' years', $then_ts) > time()) $age--;
+        return $age;
     }
 }
