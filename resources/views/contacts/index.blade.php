@@ -15,7 +15,9 @@
                     <div class="panel-heading">My Contacts</div>
 
                     <div class="panel-body">
-
+                        @if($contacts->isEmpty())
+                            <div class="alert alert-warning">Your contact list is empty! Begin with Adding a Contact(s)</div>
+                        @else
                         <table class="table">
                             <tr>
                                 <th>Name</th>
@@ -40,12 +42,10 @@
                                 </tr>
                             @endforeach
                         </table>
-
+                        @endif
                     </div>
                 </div>
                 {{$contacts->links()}} {{ link_to_route('contact.create','Add New Contact',null,['class'=>'btn btn-success pull-left']) }}
-
-
             </div>
         </div>
     </div>

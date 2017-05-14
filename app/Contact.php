@@ -11,8 +11,10 @@ class Contact extends Model
     use SoftDeletes;
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+    protected $dob;
 
     public static function getAge(){
+
         $now = new Carbon();
         //console.log($now);
         $then_ts = strtotime("1990-12-12");

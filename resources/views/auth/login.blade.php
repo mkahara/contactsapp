@@ -51,11 +51,11 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-info">
-                                        Login
+                                        <i class="fa fa-btn fa-sign-in"></i> Login
                                     </button>
 
                                     <a class="btn btn-primary" href="{{ URL::route('auth/facebook') }}">
-                                        Login with Facebook
+                                        <i class="fa fa-btn fa-facebook-square"></i> Login with Facebook
                                     </a>
 
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

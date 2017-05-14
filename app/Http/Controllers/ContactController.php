@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 use App\Contact;
-//use Carbon\Carbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Auth;
+use DateTime;
 
 class ContactController extends Controller
 {
@@ -70,11 +71,12 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        $dob = Contact::select('dob')->where('id',$contact->id)->get();
-        $then_ts = strtotime($dob);
-        $then_year = date('Y', $then_ts);
-        $age = date('Y') - $then_year;
-        if(strtotime('+' . $age . ' years', $then_ts) > time()) $age--;
+        $result = Contact::where('id', $contact->id)->first();
+
+        $date_array = explode("-",$result->dob);
+        $Born = Carbon::create($date_array[0],$date_array[1],$date_array[2]);
+        $age = $Born->diff(Carbon::now())->format('%y Year(s), %m Months and %d Days');
+
 
         try{
             return view('contacts.show',compact('contact'))->with('age',$age);
