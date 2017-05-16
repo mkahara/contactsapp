@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Auth;
-use DateTime;
+use JeroenDesloovere\VCard\VCard;
 
 class ContactController extends Controller
 {
@@ -21,7 +21,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::where('user_id',Auth::user()->id)->paginate(2);
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+        $contacts = Contact::where('name','like','%'.$search.'%')->where('user_id',Auth::user()->id)->orderBy('name')->paginate(3);
         return view('contacts.index',compact('contacts'));
     }
 
@@ -124,10 +125,44 @@ class ContactController extends Controller
         return redirect()->route('contact.index')->with('message','The contact has been deleted successfully!');
     }
 
+    /** View soft deleted items*/
+    public function trash()
+    {
+        $contacts = Contact::onlyTrashed()->where('user_id',Auth::user()->id)->paginate(2);
+        return view('contacts/trash',compact('contacts'));
+    }
+
+    /** Restore soft deleted items*/
     public function restore($id)
     {
         $contacts = Contact::withTrashed()->find($id)->restore();
-        return view('contacts.index',compact('contacts'));
+        return redirect ('contact')->with('message','The contact has been Restored!');
+    }
+
+    /**Export contact to vCard*/
+    public function exportToVcard($id)
+    {
+        //Retrieve contact details from DB
+        $result = Contact::where('id', $id)->first();
+
+        //Define variables
+        $name = $result->name;
+        $phone = $result->phone;
+        $email = $result->email;
+        $address = $result->address;
+        $organization = $result->organization;
+
+        $vcard = new VCard();
+
+        //Add contact data to VCard
+        $vcard->addName($name);
+        $vcard->addPhoneNumber($phone);
+        $vcard->addEmail($email);
+        $vcard->addAddress($address, 'Street');
+        $vcard->addCompany($organization);
+
+        //Return vcard as a download
+        return $vcard->download();
     }
 
 }

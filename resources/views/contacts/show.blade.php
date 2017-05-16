@@ -31,7 +31,7 @@
                                 <h5 class="contact-glyphicon-title">Age</h5><span class="glyphicon glyphicon-calendar contact-glyphicons" aria-hidden="true"></span><h4>{{ $age }}</h4>
                             </div>
                             <div class="col-md-4">
-                                <span class="glyphicon glyphicon-circle-arrow-down export-to-vcard-glyphicon" aria-hidden="true"></span><h4><a href="restore/{{ $contact->id }}" class="btn btn-warning">Export to Vcard</a></h4>
+                                <span class="glyphicon glyphicon-circle-arrow-down export-to-vcard-glyphicon" aria-hidden="true"></span><h4><a href="{{url('/exporttovcard/'.$contact->id)}}" class="btn btn-warning">Export to Vcard</a></h4>
                             </div>
                         </div>
                         {{--end row--}}

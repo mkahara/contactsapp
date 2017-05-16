@@ -18,6 +18,7 @@
                         @if($contacts->isEmpty())
                             <div class="alert alert-warning">Your contact list is empty! Begin with Adding a Contact(s)</div>
                         @else
+                        @include('contacts.search',['url'=>'contact','link'=>'contacts'])
                         <table class="table">
                             <tr>
                                 <th>Name</th>

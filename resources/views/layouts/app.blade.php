@@ -79,5 +79,6 @@
     <script src="{{asset('js/jquery.min.js')}}"  crossorigin="anonymous"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"  crossorigin="anonymous"></script>
     <script src="{{asset('js/jquery-ui.js')}}"></script>
+    {{--<script src="{{asset('js/app.js')}}"></script>--}}
 </body>
 </html>

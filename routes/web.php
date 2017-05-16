@@ -21,10 +21,13 @@ Auth::routes();
 Route::resource('contact', 'ContactController');
 
 /*trash*/
-Route::get('/trash', 'HomeController@trash');
+Route::get('/trash', 'ContactController@trash');
 
 /*restore*/
-Route::get('/restore/{id}', 'HomeController@restore');
+Route::get('/restore/{id}', 'ContactController@restore');
+
+/*Export contact to vCard*/
+Route::get('/exporttovcard/{id}', 'ContactController@exportToVcard');
 
 /*logout user*/
 Route::get('/logout','HomeController@doLogout');
