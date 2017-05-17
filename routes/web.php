@@ -29,6 +29,9 @@ Route::get('/restore/{id}', 'ContactController@restore');
 /*Export contact to vCard*/
 Route::get('/exporttovcard/{id}', 'ContactController@exportToVcard');
 
+/*403 not found*/
+Route::get('/notfound', 'ContactController@pageNotFound');
+
 /*logout user*/
 Route::get('/logout','HomeController@doLogout');
 

@@ -14,12 +14,13 @@ class MyAuth
      */
     public function handle($request, Closure $next)
     {
-        $id = $this->routes('contact'); // For example, the current URL is: /posts/1/edit
+        //die(request()->segment(2));
+        $id = request()->segment(2); // For example, the current URL is: /posts/1/edit
         $contact = Contact::findOrFail($id); // Fetch the post
-        if($contact->user_id == $this->auth()->id)
+        if($contact->user_id == Auth::user()->id)
         {
             return $next($request); // They're the owner, lets continue...
         }
-        return redirect()->to('/'); // Nope! Get outta' here.
+        return redirect()->to('/notfound'); // Nope! Get outta' here.
     }
 }

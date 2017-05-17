@@ -9,7 +9,6 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}"  crossorigin="anonymous">
-    {{--<link rel="stylesheet" href="{{asset('css/google-fonts.css')}}">--}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->

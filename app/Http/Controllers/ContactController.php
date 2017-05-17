@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+//namespace App\Http\Requests\EditContact;
 use App\Contact;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class ContactController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        //$this->middleware('contact.owner');
+        $this->middleware('contact.owner',['only'=>'edit']);
     }
     /**
      * Display a listing of the resource.
@@ -163,6 +164,11 @@ class ContactController extends Controller
 
         //Return vcard as a download
         return $vcard->download();
+    }
+
+    public function pageNotFound()
+    {
+        return view('contacts/403');
     }
 
 }

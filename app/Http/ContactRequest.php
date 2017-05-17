@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use  Illuminate\Http\Request;
+use App\Contact;
 
 class ContactRequest extends Request
 {
@@ -13,6 +14,13 @@ class ContactRequest extends Request
      */
     public function authorize()
     {
+        if($this->contact)
+        {
+            if($this->user()->user_type=='0') return true;
+
+            return Contact::where('id', $this->blog)
+                ->where('user_id', $this->user()->id)->exists();
+        }
         return true;
     }
 
@@ -27,7 +35,6 @@ class ContactRequest extends Request
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'address' => 'required',
         ];
     }
 }
