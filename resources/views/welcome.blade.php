@@ -1,91 +1,77 @@
+
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-        <title>Contacts App</title>
+    <title>Contacts App</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <!-- Custom styles for this template -->
+    <link href="{{asset('css/cover.css')}}" rel="stylesheet">
+</head>
 
-            .full-height {
-                height: 100vh;
-            }
+<body>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+<div class="site-wrapper">
 
-            .position-ref {
-                position: relative;
-            }
+    <div class="site-wrapper-inner">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        <div class="cover-container">
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/contact') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">Contacts App</h3>
+                    @if (Route::has('login'))
+                    <nav class="nav nav-masthead">
+                        @if (Auth::check())
+                        <a class="nav-link active" href="{{ url('/contact') }}">Home</a>
+                        @else
+                        <a class="nav-link" href="{{ url('/login') }}">Login</a>
+                        <a class="nav-link" href="{{ url('/register') }}">Register</a>
+                        @endif
+                    </nav>
                     @endif
                 </div>
-            @endif
+            </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Contacts App
-                </div>
+            <div class="inner cover">
+                <h1 class="cover-heading">Contacts App</h1>
+                <p class="lead">An application that allows you to manage and store your Contacts.</p>
+                @if (Route::has('login'))
+                <p class="lead">
+                    @if (Auth::check())
+                        <a href="{{url('/contact')}}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
+                    @else
+                    <a href="{{url('/register')}}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    @endif
+                </p>
+                @endif
+            </div>
 
-                <div class="links">
-                    <p>Manage your Address Book!</p>
+            <div class="mastfoot">
+                <div class="inner">
+                    <p>&copy; {{@date('Y')}} Contacts App, by <a href="https://twitter.com/samsoftk">@samsoftk</a>.</p>
                 </div>
             </div>
+
         </div>
-    </body>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="{{asset('js/jquery.min.js')}}"><\/script>')</script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"  crossorigin="anonymous"></script>
+</body>
 </html>

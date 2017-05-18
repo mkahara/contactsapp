@@ -27,3 +27,17 @@
 .error-actions .btn {
     margin-right:10px;
 }
+.top-links {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin: 10px 5px;
+    color: #FFFFFF !important;
+}
+.top-links:hover {
+    color: #337AB7 !important;
+}
+@media (max-width: 500px) {
+    .top-links {
+        width: 20%;
+    }
+}

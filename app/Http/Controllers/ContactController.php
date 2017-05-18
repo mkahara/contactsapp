@@ -46,10 +46,6 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        /*check whether the email address for the contact is unique*/
-        //$user = Auth::user();
-        //$emails=Contact::select('email')->where('user_id',$user->id)->get();
-        //var_dump($emails);die();
 
         try{
             Contact::create($request->all());
@@ -73,8 +69,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
+        //die($contact->slug);
         $result = Contact::where('id', $contact->id)->first();
-
         $date_array = explode("-",$result->dob);
         $Born = Carbon::create($date_array[0],$date_array[1],$date_array[2]);
         $age = $Born->diff(Carbon::now())->format('%y Year(s), %m Months and %d Days');
@@ -168,7 +164,7 @@ class ContactController extends Controller
 
     public function pageNotFound()
     {
-        return view('contacts/403');
+
     }
 
 }

@@ -17,7 +17,7 @@
    git clone https://github.com/mkahara/contactsapp.git
   ```
 - Consider the facebook (auth) callback url. On the local machine, I used http://localhost/contactsapp/public
-- The .sql file is included in the root folder
+- Run migration to create the database
 - Create .env file contains all the credentials (database and facebook auth)
 - Install the dependencies
   ```bash
